@@ -68,7 +68,7 @@ public class AccountCreationDialog extends JDialog {
         panel.add(pfPassword, cs);
         panel.setBorder(new LineBorder(Color.GRAY));
  
-        btnLogin = new JButton("Create");
+        btnLogin = new JButton("Créer");
  
         btnLogin.addActionListener(new ActionListener() {
  
@@ -94,7 +94,7 @@ public class AccountCreationDialog extends JDialog {
 				}
 			}
         });
-        btnCancel = new JButton("Cancel");
+        btnCancel = new JButton("Annuler");
         btnCancel.addActionListener(new ActionListener() {
  
             public void actionPerformed(ActionEvent e) {

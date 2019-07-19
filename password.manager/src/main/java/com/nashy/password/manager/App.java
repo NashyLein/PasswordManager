@@ -46,9 +46,9 @@ public class App extends JFrame {
     private void initUI() {
     	
     	JLabel label = new JLabel("Choississez ce que vous voulez faire");
-    	JButton loginButton = new JButton("Login");
-        JButton quitButton = new JButton("Quit");
-        JButton createAccountButton = new JButton("Create account");
+    	JButton loginButton = new JButton("Se connecter");
+        JButton quitButton = new JButton("Quitter");
+        JButton createAccountButton = new JButton("Créer un compte");
 
         quitButton.addActionListener((ActionEvent event) -> {
             System.exit(1);
@@ -68,7 +68,7 @@ public class App extends JFrame {
 
         createLayout(label, loginButton, createAccountButton, quitButton);
 
-        setTitle("Test");
+        setTitle("Password manager");
         setSize(300, 200);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
