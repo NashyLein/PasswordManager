@@ -16,10 +16,12 @@ import javax.swing.border.LineBorder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 
 import com.nashy.password.manager.swing.AccountCreationDialog;
+import com.nashy.password.manager.swing.HomeDialog;
 import com.nashy.password.manager.swing.LoginDialog;
 
 
@@ -32,7 +34,11 @@ public class App extends JFrame {
 	private LoginDialog loginDialog;
 	
 	private AccountCreationDialog accountCreationDialog;
-
+	
+	private HomeDialog homeDialog;
+	
+	private ApplicationContext ctx;
+	
     /**
 	 * 
 	 */
@@ -44,6 +50,7 @@ public class App extends JFrame {
     }
 
     private void initUI() {
+    	
     	
     	JLabel label = new JLabel("Choississez ce que vous voulez faire");
     	JButton loginButton = new JButton("Se connecter");
@@ -58,6 +65,8 @@ public class App extends JFrame {
         	loginDialog.setVisible(true);
         	if (loginDialog.isSucceeded()) {
         		loginDialog.dispose();
+        		homeDialog = ctx.getBean(HomeDialog.class, this, loginDialog.getUsername());
+        		homeDialog.setVisible(true);
         	}
         });
         
@@ -103,6 +112,7 @@ public class App extends JFrame {
 
         EventQueue.invokeLater(() -> {
         	App app = ctx.getBean(App.class);
+        	app.ctx = ctx;
             LoginDialog loginDialog = ctx.getBean(LoginDialog.class, app);
             AccountCreationDialog accountCreation = ctx.getBean(AccountCreationDialog.class, app);
             app.loginDialog = loginDialog;
