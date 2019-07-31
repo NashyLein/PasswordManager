@@ -23,6 +23,7 @@ public class Services {
 	public void populateDB() {
 		User test = new User("admin", "admin");
     	test.getApplications().add(new ApplicationCredentials("test", "admin", "pass"));
+    	test.getApplications().add(new ApplicationCredentials("toto", "admin", "pass1"));
         userDao.save(test);
 		
 	}
@@ -35,6 +36,11 @@ public class Services {
 
 	public boolean accountAlreadyExist(String username) {
 		return userDao.findById(username).isPresent();
+	}
+	
+	public User getUser(String userName) {
+		Optional<User> user = userDao.findById(userName);
+		return user.orElseThrow(() -> new IllegalArgumentException());
 	}
 
 }
